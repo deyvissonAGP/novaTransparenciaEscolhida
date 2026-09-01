@@ -321,9 +321,6 @@ function SecaoEvolucaoSelos() {
         <p className="mx-auto mt-8 max-w-3xl rounded-lg border border-primary/20 bg-card p-5 text-center text-sm italic text-foreground md:text-base">
           "Hoje, o Maranhão está entre os estados com a melhor avaliação da
           Controladoria-Geral da União em transparência pública."
-          <span className="mt-2 block text-xs font-semibold not-italic text-primary">
-            STC, Hackathon Transparência Maranhense 2026
-          </span>
         </p>
       </div>
     </section>
@@ -1079,7 +1076,7 @@ function SecaoCTAFinal() {
         </div>
 
         <p className="mt-8 text-xs text-primary-foreground/70">
-          Hackathon Transparência Maranhense 2026 ·{" "}
+          {" "}
           {formatNumber(320000)} cidadãos atendidos por ano
         </p>
       </div>
