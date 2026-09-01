@@ -8,7 +8,13 @@
  * As funções são determinísticas (mesma chamada → mesmo resultado), o que
  * permite que /servidor reconstrua o mesmo servidor a partir de query params
  * sem precisar persistir estado entre páginas.
+ *
+ * Exceção: cargos de agente político (Governador, Vice, Secretário de Estado)
+ * são resolvidos por `autoridadesPorCargo` com nomes e subsídios reais
+ * (ver data/autoridades.ts).
  */
+
+import { autoridadesPorCargo } from "./autoridades"
 
 export type Servidor = {
   nome: string
@@ -90,6 +96,9 @@ export const LOTACOES_POR_EIXO: Record<string, string[]> = {
 }
 
 const CARGO_PARA_EIXO: Array<{ matcher: string; meta: CargoMeta }> = [
+  { matcher: "governador", meta: { slug: "gestao-publica", orgaos: ["GOV", "SEDUC", "CASA CIVIL"] } },
+  { matcher: "secretário de estado", meta: { slug: "gestao-publica", orgaos: ["SEFAZ", "SINFRA", "SES", "STC", "SEGOV"] } },
+  { matcher: "secretario de estado", meta: { slug: "gestao-publica", orgaos: ["SEFAZ", "SINFRA", "SES", "STC", "SEGOV"] } },
   { matcher: "professor", meta: { slug: "educacao", orgaos: ["SEDUC", "IEMA", "UEMA", "FUNDEB"] } },
   { matcher: "diretor", meta: { slug: "educacao", orgaos: ["SEDUC", "IEMA"] } },
   { matcher: "coordenador", meta: { slug: "educacao", orgaos: ["SEDUC", "IEMA"] } },
@@ -143,6 +152,13 @@ export function gerarServidores(
   cargoMeta: CargoMeta | null,
   totalOverride?: number
 ): Servidor[] {
+  // Agentes políticos (Governador, Vice, Secretários): nomes e subsídios reais.
+  const autoridades = autoridadesPorCargo(termo)
+  if (autoridades) {
+    // Lista fixa e determinística: o índice é estável entre /detalhe e /servidor.
+    return autoridades
+  }
+
   const orgaos = cargoMeta?.orgaos ?? ["SEAD"]
   const lotacoes = LOTACOES_POR_EIXO[eixoSlug] ?? ["Sede do órgão"]
   const ehProfessor = termo.toLowerCase().includes("professor")

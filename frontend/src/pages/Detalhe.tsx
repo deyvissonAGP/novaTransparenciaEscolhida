@@ -38,6 +38,7 @@ import {
   identificarCargo,
   gerarServidores,
 } from "@/data/servidores"
+import { autoridadesPorCargo } from "@/data/autoridades"
 import { cn, formatBRL, formatNumber } from "@/lib/utils"
 
 const TIPO_ICONS: Record<string, LucideIcon> = {
@@ -372,7 +373,9 @@ export function Detalhe() {
 
           <p className="mt-4 rounded-md border border-secondary/30 bg-secondary/10 p-2 text-xs text-foreground">
             Dados gerados a partir de modelo de consolidação. Em produção,
-            virão diretamente do SIAFEM via Edge Function.
+            virão diretamente do SIAFEM via Edge Function. Nomes e cargos de
+            agentes políticos (Governador, Vice e Secretários) são de fonte
+            pública, com subsídio aproximado; demais nomes são ilustrativos.
           </p>
         </section>
       </main>
@@ -674,7 +677,43 @@ function gerarDadosDetalhe(termo: string, tipo: string, eixoSlug: string) {
     termo: `Resultados consolidados para "${capitalize(termo)}" no ${eixoNome(eixoSlug)}: ${formatBRL(valorTotal)} em ${formatNumber(numNotas)} notas, ${formatNumber(numContratos)} contratos relacionados.`,
   }
 
-  const cards = [
+  // Agentes políticos: substitui a resposta e os cards genéricos por
+  // números reais derivados do subsídio (data/autoridades.ts).
+  const autoridades = tipo === "cargo" ? autoridadesPorCargo(termo) : null
+  if (autoridades && autoridades.length > 0) {
+    const folhaMes = autoridades.reduce((s, a) => s + a.totalProventos, 0)
+    const liquidoMes = autoridades.reduce((s, a) => s + a.liquido, 0)
+    const media = Math.round(folhaMes / autoridades.length)
+    const ehGovernador = termo.toLowerCase().includes("governador")
+    respostas.cargo = ehGovernador
+      ? `O subsídio bruto mensal do Governador do Estado é ${formatBRL(autoridades[0].vencimento)} (regime de parcela única). Somando o Vice-Governador, a folha do cargo é ${formatBRL(folhaMes)}/mês, com líquido de ${formatBRL(liquidoMes)} após previdência e IRPF. Valores de fonte pública.`
+      : `Os ${formatNumber(autoridades.length)} titulares de secretarias com registro no recorte recebem subsídio bruto de ${formatBRL(media)}/mês cada (parcela única). A folha do primeiro escalão soma ${formatBRL(folhaMes)}/mês, com líquido de ${formatBRL(liquidoMes)}. Valores de fonte pública.`
+  }
+
+  const cards = autoridades && autoridades.length > 0
+    ? [
+        {
+          label: "Subsídio bruto",
+          valor: formatBRL(autoridades[0].vencimento),
+          legenda: termo.toLowerCase().includes("governador") ? "Governador (parcela única)" : "Por secretário (parcela única)",
+        },
+        {
+          label: "Folha do cargo",
+          valor: formatBRL(autoridades.reduce((s, a) => s + a.totalProventos, 0)),
+          legenda: `${formatNumber(autoridades.length)} agentes políticos`,
+        },
+        {
+          label: "Líquido do cargo",
+          valor: formatBRL(autoridades.reduce((s, a) => s + a.liquido, 0)),
+          legenda: "Após previdência e IRPF",
+        },
+        {
+          label: "Regime",
+          valor: "Subsídio",
+          legenda: "Parcela única, sem gratificações",
+        },
+      ]
+    : [
     {
       label: "Valor total",
       valor: formatBRL(valorTotal),

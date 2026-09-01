@@ -23,6 +23,30 @@ export type CargoCatalog = {
 }
 
 export const CARGOS_CATALOG: CargoCatalog[] = [
+  // ─── Alto Escalão (Agentes Políticos) ───────────────────────────
+  {
+    nome: "Governador do Estado",
+    q: "Governador",
+    eixoSlug: "gestao-publica",
+    eixoNome: "Gestão Pública",
+    descricaoCidada: "Chefe do Poder Executivo estadual e o vice-governador",
+    totalFolhaMensalMi: 0.064,
+    numServidores: 2,
+    salarioMedio: 32148,
+    destaque: true,
+  },
+  {
+    nome: "Secretário de Estado",
+    q: "Secretário de Estado",
+    eixoSlug: "gestao-publica",
+    eixoNome: "Gestão Pública",
+    descricaoCidada: "Primeiro escalão do governo: titulares das secretarias",
+    totalFolhaMensalMi: 0.68,
+    numServidores: 24,
+    salarioMedio: 28245,
+    destaque: true,
+  },
+
   // ─── Educação ────────────────────────────────────────────────────
   {
     nome: "Professor",

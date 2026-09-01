@@ -468,7 +468,7 @@ export function Servidor() {
           </article>
 
           <p className="mt-4 rounded-md border border-secondary/30 bg-secondary/10 p-3 text-xs text-foreground">
-            Extrato gerado a partir de modelo de consolidação para fins de demonstração. Em produção, virá da Folha de Pagamento oficial via Edge Function. Nome ilustrativo, CPF mascarado por LGPD.
+            Extrato gerado a partir de modelo de consolidação para fins de demonstração. Em produção, virá da Folha de Pagamento oficial via Edge Function. Para agentes políticos (Governador, Vice-Governador e Secretários de Estado), o nome e o cargo são de fonte pública e o subsídio é aproximado; para os demais servidores, o nome é ilustrativo. CPF sempre mascarado por LGPD.
           </p>
         </section>
       </main>

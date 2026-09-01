@@ -202,8 +202,10 @@ export function Cargos() {
           <p className="rounded-md border border-secondary/30 bg-secondary/10 p-3 text-xs text-foreground">
             Catálogo construído a partir de modelo de consolidação para fins de
             demonstração. Em produção, virá da Folha de Pagamento oficial via
-            API do Portal da Transparência. Nomes individuais nas páginas de
-            detalhe são fictícios e o CPF é sempre mascarado por LGPD.
+            API do Portal da Transparência. Nas páginas de detalhe, agentes
+            políticos (Governador, Vice e Secretários) aparecem com nome e cargo
+            de fonte pública e subsídio aproximado; os demais nomes são fictícios.
+            O CPF é sempre mascarado por LGPD.
           </p>
         </section>
       </main>

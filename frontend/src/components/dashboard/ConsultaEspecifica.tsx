@@ -18,6 +18,11 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import { cn, formatBRL, formatNumber } from "@/lib/utils"
+import {
+  PESSOAL_AUTORIDADES,
+  REMUNERACAO_AUTORIDADES,
+  DIARIAS_AUTORIDADES,
+} from "@/data/autoridades"
 
 export type AbaConfig = {
   id: string
@@ -263,6 +268,8 @@ export const DADOS_CONVENIOS = [
 ]
 
 export const DADOS_DIARIAS = [
+  // Agentes políticos (Governador, Vice, Secretários) - dados de fonte pública
+  ...DIARIAS_AUTORIDADES,
   { id: "dir-1", pcd: "PCD-2026/00142", servidor: "ENG. MARCELO NOGUEIRA FONTES", cargo: "Engenheiro Civil", orgao: "SINFRA", mes: "Fevereiro", dataPartida: "04/02/2026", dataRetorno: "07/02/2026", destino: "Imperatriz / Balsas", motivo: "Vistoria técnica de obras rodoviárias e medição de pavimentação", qtdDiarias: 3.5, valorTotal: 2100, situacao: "Paga", ano: 2026 },
   { id: "dir-2", pcd: "PCD-2026/00188", servidor: "DRA. MARIANA VIEIRA GUIMARÃES", cargo: "Médica Cardiologista", orgao: "SES", mes: "Fevereiro", dataPartida: "10/02/2026", dataRetorno: "13/02/2026", destino: "Caxias / Timon", motivo: "Supervisão da implantação da linha de cuidado cardiovascular macrorregional", qtdDiarias: 3.5, valorTotal: 2450, situacao: "Paga", ano: 2026 },
   { id: "dir-3", pcd: "PCD-2026/00210", servidor: "ANA BEATRIZ ALMEIDA ROCHA", cargo: "Auditor Fiscal da Receita Estadual", orgao: "SEFAZ", mes: "Fevereiro", dataPartida: "12/02/2026", dataRetorno: "16/02/2026", destino: "Estreito / Carolina", motivo: "Fiscalização em postos fiscais de divisa e auditoria de cargas interestaduais", qtdDiarias: 4.5, valorTotal: 3150, situacao: "Paga", ano: 2026 },
@@ -321,6 +328,9 @@ export const DADOS_OBRAS = [
 ]
 
 export const DADOS_PESSOAL = [
+  // ─── Alto Escalão (Agentes Políticos) - dados de fonte pública ────
+  ...PESSOAL_AUTORIDADES,
+
   // ─── Educação (Professores) ───────────────────────────────────────
   { id: "pes-1", matricula: "0048192-1", nome: "MARIA DAS GRAÇAS SILVA SANTOS", cpf: "***.452.883-**", cargo: "Professor da Educação Básica II", orgao: "Secretaria de Educação - SEDUC", vinculo: "Efetivo", admissao: "12/03/2012", mes: "Fevereiro", remuneracaoBruta: 8450, remuneracaoLiquida: 6890, situacao: "Ativo", ano: 2026 },
   { id: "pes-2", matricula: "0051204-8", nome: "JOÃO BATISTA FERREIRA", cpf: "***.321.654-**", cargo: "Professor da Educação Básica II", orgao: "Secretaria de Educação - SEDUC", vinculo: "Efetivo", admissao: "18/02/2014", mes: "Fevereiro", remuneracaoBruta: 7890, remuneracaoLiquida: 6380, situacao: "Ativo", ano: 2026 },
@@ -353,6 +363,8 @@ export const DADOS_PESSOAL = [
 ]
 
 export const DADOS_REMUNERACAO = [
+  // Agentes políticos (subsídio - parcela única) - dados de fonte pública
+  ...REMUNERACAO_AUTORIDADES,
   { id: "rem-1", codigoCargo: "CARG-0102", denominacao: "Auditor Fiscal da Receita Estadual", grupo: "Tributação e Fiscalização", poder: "Executivo", qtdServidores: 412, vencimentoBase: 15200, gratificacoes: 7300, salarioMedioBruto: 22500, cargaHoraria: "40h semanais", ano: 2026 },
   { id: "rem-2", codigoCargo: "CARG-0205", denominacao: "Professor da Educação Básica II", grupo: "Magistério Estadual", poder: "Executivo", qtdServidores: 38420, vencimentoBase: 5800, gratificacoes: 2650, salarioMedioBruto: 8450, cargaHoraria: "40h semanais", ano: 2026 },
   { id: "rem-3", codigoCargo: "CARG-0210", denominacao: "Professor da Educação Básica I", grupo: "Magistério Estadual", poder: "Executivo", qtdServidores: 12400, vencimentoBase: 4200, gratificacoes: 1200, salarioMedioBruto: 5400, cargaHoraria: "30h semanais", ano: 2026 },
@@ -837,6 +849,7 @@ export function ConsultaEspecifica({ eixoSlug = "gestao-publica" }: { eixoSlug?:
                   )}
                   {abaAtiva === "pessoal" && (
                     <>
+                      <option value="Agente Político">Agente Político (Governador, Vice, Secretários)</option>
                       <option value="Efetivo">Efetivo (Concursado)</option>
                       <option value="Comissionado">Comissionado</option>
                       <option value="Contrato Temporário">Contrato Temporário</option>
@@ -844,6 +857,7 @@ export function ConsultaEspecifica({ eixoSlug = "gestao-publica" }: { eixoSlug?:
                   )}
                   {abaAtiva === "remuneracao" && (
                     <>
+                      <option value="Agentes Políticos">Agentes Políticos (Governador, Vice, Secretários)</option>
                       <option value="Magistério Estadual">Magistério Estadual (Professores)</option>
                       <option value="Segurança e Defesa">Segurança e Defesa (Policiais)</option>
                       <option value="Saúde Pública">Saúde Pública (Médicos, Enfermeiros)</option>
@@ -879,11 +893,13 @@ export function ConsultaEspecifica({ eixoSlug = "gestao-publica" }: { eixoSlug?:
                   className="h-9 w-full rounded-md border border-input bg-background px-2.5 text-xs text-foreground focus:border-primary focus:outline-none"
                 >
                   <option value="Todos">Todos os Órgãos</option>
+                  <option value="GOV">Governadoria</option>
                   <option value="SES">SES (Saúde Estadual)</option>
                   <option value="SEDUC">SEDUC (Educação)</option>
                   <option value="SINFRA">SINFRA (Infraestrutura)</option>
                   <option value="SSP">SSP (Segurança Pública / Polícias)</option>
                   <option value="SEFAZ">SEFAZ (Fazenda)</option>
+                  <option value="STC">STC (Transparência e Controle)</option>
                   <option value="SEAD">SEAD (Administração)</option>
                   <option value="SECID">SECID (Cidades e Saneamento)</option>
                   <option value="SAF">SAF (Agricultura Familiar)</option>
