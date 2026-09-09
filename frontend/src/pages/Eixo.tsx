@@ -38,6 +38,7 @@ export function Eixo() {
   const { slug = "" } = useParams<{ slug: string }>()
   const eixo = EIXOS.find((e) => e.slug === slug)
   const dados = getDadosEixo(slug)
+  const temConsulta = Boolean(EIXOS_COM_CONSULTA[slug])
 
   const [statusFonte, setStatusFonte] = useState<StatusFonte>("carregando")
   const [erroApi, setErroApi] = useState<string | null>(null)
@@ -210,9 +211,25 @@ export function Eixo() {
           </div>
         </section>
 
+        {/* Consulta específica (apenas para os eixos com abas/cards definidos) */}
+        {temConsulta && (
+          <section className="container-page px-4 pt-8 pb-4">
+            <SectionHeader
+              numero="01"
+              titulo="Consulta específica"
+              descricao={EIXOS_COM_CONSULTA[slug]}
+            />
+            <ConsultaEspecifica eixoSlug={slug} />
+          </section>
+        )}
+
         {/* Cards de resumo */}
-        <section className="container-page px-4 py-8">
-          <SectionHeader numero="01" titulo="Visão geral" descricao="Os números que importam para o cidadão" />
+        <section className={cn("container-page px-4 pb-8", !temConsulta && "pt-8")}>
+          <SectionHeader
+            numero={temConsulta ? "02" : "01"}
+            titulo="Visão geral"
+            descricao="Os números que importam para o cidadão"
+          />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {dados.cardsResumo.map((card, i) => (
               <CardResumo key={card.label} card={card} destaque={i === 0} />
@@ -222,7 +239,11 @@ export function Eixo() {
 
         {/* Gráficos */}
         <section className="container-page px-4 pb-8">
-          <SectionHeader numero="02" titulo="Como o dinheiro foi usado" descricao={`Composição e evolução do orçamento de R$ ${(totalAnualMilhoes / 1000).toFixed(1)} bilhões em 2025`} />
+          <SectionHeader
+            numero={temConsulta ? "03" : "02"}
+            titulo="Como o dinheiro foi usado"
+            descricao={`Composição e evolução do orçamento de R$ ${(totalAnualMilhoes / 1000).toFixed(1)} bilhões em 2025`}
+          />
           <div className="grid gap-4 lg:grid-cols-2">
             <GraficoBarra
               titulo="Composição dos gastos"
@@ -238,8 +259,12 @@ export function Eixo() {
         </section>
 
         {/* Destaques (lista com tema rotativo: azul, mostarda, verde) */}
-        <section className="container-page px-4 pb-8">
-          <SectionHeader numero="03" titulo="Destaques" descricao="Iniciativas e órgãos com maior peso neste eixo" />
+        <section className="container-page px-4 pb-10">
+          <SectionHeader
+            numero={temConsulta ? "04" : "03"}
+            titulo="Destaques"
+            descricao="Iniciativas e órgãos com maior peso neste eixo"
+          />
           <ul className="grid gap-4 sm:grid-cols-3">
             {dados.destaques.map((d, i) => {
               const tema = TEMAS_DESTAQUE[i % TEMAS_DESTAQUE.length]
@@ -295,18 +320,6 @@ export function Eixo() {
             })}
           </ul>
         </section>
-
-        {/* Consulta específica (apenas para os eixos com abas/cards definidos) */}
-        {EIXOS_COM_CONSULTA[slug] && (
-          <section className="container-page px-4 pb-10">
-            <SectionHeader
-              numero="04"
-              titulo="Consulta específica"
-              descricao={EIXOS_COM_CONSULTA[slug]}
-            />
-            <ConsultaEspecifica eixoSlug={slug} />
-          </section>
-        )}
       </main>
 
       <Footer />
