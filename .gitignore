@@ -69,6 +69,8 @@ ehthumbs.db
 Desktop.ini
 desktop.ini
 $RECYCLE.BIN/
+*:Zone.Identifier
+*.Zone.Identifier
 
 # Python (usado para scripts de extração de dados)
 __pycache__/
