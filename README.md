@@ -1,6 +1,6 @@
 <div align="center">
 
-![Hackathon da Transparência - Equipe 4](frontend/public/images/01.png)
+![Portal da Transparência do Maranhão](frontend/public/images/01.png)
 
 # Portal da Transparência do Maranhão
 
@@ -22,12 +22,10 @@ Mobile-first, busca em linguagem natural com IA, em até 3 toques.**
 
 ## Sobre o Projeto
 
-Projeto da **Equipe 4** desenvolvido no **Hackathon da Transparência Maranhense 2026**, organizado por STC, SECTI, EGMA e FAPEMA, em São Luís - MA, entre 24 e 26 de abril.
+O **Portal da Transparência do Maranhão** é a evolução do portal público estadual, mantendo a conformidade com o Selo Diamante da ATRICON/CGU e os 320 mil usuários anuais, redesenhado a partir do dado real de uso, sem a barreira do burocratiquês e funcionando com excelência no celular e desktop.
 
-O **Portal da Transparência** é a proposta de **substituição do atual portal**, mantendo o Selo Diamante e os 320 mil usuários anuais, mas redesenhado a partir do dado real de uso, sem a barreira do burocratiquês e funcionando de verdade no celular.
-
-> *"O nosso compromisso é um pouco menos com o legal e mais com a sociedade."*
-> Secretaria da Transparência e Controle do MA, abertura do Hackathon 2026.
+> *"O nosso compromisso é aproximar a administração pública da sociedade com clareza e acessibilidade."*
+> Secretaria de Estado da Transparência e Controle do MA (STC-MA).
 
 ---
 
@@ -99,7 +97,7 @@ A proposta não é ruptura, é a continuidade técnica do que a STC vinha planej
 | 2021 | Inovação na apresentação, acesso com menos clicks, multi-plataforma |
 | 2022 | Estratégia de Linguagem Simples, atalho "Mais Buscados" |
 | 2023 | Novo Portal (parceria SEATRAN + LabiGov) |
-| **2026** | **Usabilidade total, com o cidadão no centro (este hackathon)** |
+| **2026** | **Usabilidade total, linguagem cidadã e IA com controle social** |
 
 ---
 
@@ -168,7 +166,7 @@ Alto contraste, controle de fonte, modo simplificado, leitor de tela. WCAG 2.1 A
 ## Estrutura do Repositório
 
 ```
-hackaton-da-transparencia/
+portal-transparencia-ma/
 ├── README.md                  ← este arquivo
 ├── netlify.toml               ← config de deploy (base, publish, redirect SPA)
 │
@@ -199,16 +197,12 @@ hackaton-da-transparencia/
 ### Passos
 
 ```bash
-# Clonar
-git clone https://github.com/agenciadigitalslz/hackaton-da-transparencia.git
-cd hackaton-da-transparencia/frontend
-
 # Instalar dependências
 npm install
 
 # Rodar em desenvolvimento
 npm run dev
-# Acesse http://localhost:5173
+# Acesse http://localhost:5174
 ```
 
 ### Build de produção
@@ -230,34 +224,22 @@ npm run preview     # serve localmente o build
 
 ---
 
-## Agradecimentos
+## Órgãos e Entidades Envolvidas
 
-Aos organizadores do Hackathon da Transparência Maranhense 2026:
-
-- **STC - Secretaria da Transparência e Controle do Estado do Maranhão**
+- **STC - Secretaria de Estado da Transparência e Controle do Estado do Maranhão**
 - **SECTI - Secretaria de Estado da Ciência, Tecnologia e Inovação**
 - **EGMA - Escola de Governo do Maranhão**
 - **FAPEMA - Fundação de Amparo à Pesquisa e ao Desenvolvimento Científico e Tecnológico do Maranhão**
 
-E às equipes históricas do portal (2021 e 2023), citadas em `DADOS_REAIS.md`, que abriram o caminho que esta proposta tenta concluir.
-
----
-
-## Premiação Oficial
-
-| Posição | Valor (FAPEMA) |
-|---|---|
-| 1º lugar | R$ 6.000 |
-| 2º lugar | R$ 3.000 |
-| 3º lugar | R$ 1.800 |
+E às equipes históricas do portal (2021 e 2023), que abriram o caminho que esta proposta consolida.
 
 ---
 
 <div align="center">
 
-**Hackathon da Transparência Maranhense 2026** · 24 a 26 de abril · São Luís, MA
+**Portal da Transparência do Governo do Estado do Maranhão** · São Luís, MA
 
-[Demo](https://portaltransparencia.netlify.app) · [Repositório](https://github.com/agenciadigitalslz/hackaton-da-transparencia)
+[Demo](https://portaltransparencia.netlify.app)
 
 </div>
 

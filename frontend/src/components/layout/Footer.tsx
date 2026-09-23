@@ -65,13 +65,12 @@ export function Footer() {
         {/* Disclaimer institucional */}
         <div className="mt-8 border-t border-border pt-6 text-xs leading-relaxed text-muted-foreground">
           <p>
-            Este protótipo foi construído para o Hackathon da Transparência
-            Maranhense 2026 (STC + SECTI + EGMA + FAPEMA). Os dados oficiais
-            permanecem sob a guarda da Secretaria de Transparência e Controle
-            do Estado do Maranhão. Esta nova versão é uma proposta de evolução do
-            atual Portal da Transparência, mantendo o compliance Selo Diamante
-            e aderente à LAI (Lei 12.527/2011), Lei de Transparência (LC
-            131/2009), LGPD e e-MAG.
+            Portal da Transparência do Governo do Estado do Maranhão, sob a
+            gestão da Secretaria de Estado de Transparência e Controle (STC-MA).
+            Esta versão foi concebida para assegurar máxima usabilidade,
+            transparência ativa e controle social, em conformidade com o Selo Diamante
+            da ATRICON/CGU, a LAI (Lei nº 12.527/2011), Lei da Transparência (LC
+            nº 131/2009), LGPD (Lei nº 13.709/2018) e o modelo e-MAG de acessibilidade.
           </p>
         </div>
       </div>

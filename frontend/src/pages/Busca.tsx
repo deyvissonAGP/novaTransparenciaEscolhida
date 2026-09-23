@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import {
   Search,
   Sparkles,
@@ -128,7 +128,8 @@ type ToastTrigger = {
 
 export function Busca() {
   const navigate = useNavigate()
-  const [query, setQuery] = useState("")
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [query, setQuery] = useState(() => searchParams.get("q") || searchParams.get("termo") || "")
   const [submitted, setSubmitted] = useState("")
   const [searching, setSearching] = useState(false)
   const [resultadosTotais, setResultadosTotais] = useState<ResultadoMock[] | null>(null)
@@ -172,17 +173,31 @@ export function Busca() {
     }, 700)
   }
 
+  // Sincroniza busca com query string da URL (ex: ao vir do Hero da Home)
+  useEffect(() => {
+    const param = searchParams.get("q") || searchParams.get("termo")
+    if (param && param.trim() && param.trim() !== submitted) {
+      setQuery(param.trim())
+      executarBusca(param.trim())
+    }
+  }, [searchParams])
+
   function aplicarTermo(termo: string, tipoForcado?: ResultadoMock["tipo"]) {
-    setQuery(termo)
+    const limpo = termo.trim()
+    setQuery(limpo)
+    setSearchParams({ q: limpo })
     // Foca o input e rola pra ele para feedback visual imediato
     inputRef.current?.focus()
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
-    executarBusca(termo, tipoForcado)
+    executarBusca(limpo, tipoForcado)
   }
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault()
-    executarBusca(query)
+    if (query.trim()) {
+      setSearchParams({ q: query.trim() })
+      executarBusca(query)
+    }
   }
 
   // Fecha sugestões ao clicar fora
@@ -318,6 +333,7 @@ export function Busca() {
                         setSubmitted("")
                         setResultadosTotais(null)
                         setExibindo(PAGINA_INICIAL)
+                        setSearchParams({})
                         inputRef.current?.focus()
                       }}
                       className="absolute right-3 top-1/2 inline-flex size-7 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -552,6 +568,7 @@ export function Busca() {
                       setSubmitted("")
                       setResultadosTotais(null)
                       setExibindo(PAGINA_INICIAL)
+                      setSearchParams({})
                       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
                     }}
                     className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted"

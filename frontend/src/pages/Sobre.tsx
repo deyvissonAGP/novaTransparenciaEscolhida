@@ -633,8 +633,7 @@ function SecaoMetricasReais() {
           Análise dos dados reais
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-          Google Analytics 2024 a 2026 e planilha de termos buscados, ambos
-          cedidos pela STC para o hackathon.
+          Dados do Google Analytics 2024 a 2026 e levantamento oficial de termos mais buscados da STC-MA.
         </p>
       </div>
 

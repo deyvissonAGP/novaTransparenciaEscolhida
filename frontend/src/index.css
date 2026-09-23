@@ -396,7 +396,7 @@
     --tw-ring-color: hsl(var(--border)) !important;
   }
 
-  /* ─── Badge "Hackathon" no hero ────────────────────────────────
+  /* ─── Badge no hero ────────────────────────────────
      Fundo black/30 + border mostarda + Sparkles dourado viram
      fundo cinza-escuro com borda e texto brancos. */
   .high-contrast [data-badge-hero="true"] {

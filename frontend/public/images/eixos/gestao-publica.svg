@@ -2,17 +2,19 @@
   <defs>
     <linearGradient id="ggestaopublica" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0F7B40" />
-      <stop offset="100%" stop-color="#D4A017" />
+      <stop offset="70%" stop-color="#166534" />
+      <stop offset="100%" stop-color="#CA8A04" />
     </linearGradient>
-    <pattern id="pgestaopublica" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1" />
+    <pattern id="pgestaopublica" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1" />
     </pattern>
   </defs>
   <rect width="800" height="450" fill="url(#ggestaopublica)"/>
   <rect width="800" height="450" fill="url(#pgestaopublica)"/>
-  <circle cx="680" cy="80" r="140" fill="#ffffff" fill-opacity="0.05"/>
-  <circle cx="100" cy="380" r="100" fill="#ffffff" fill-opacity="0.04"/>
-  <text x="60" y="260" font-family="Playfair Display, Georgia, serif" font-size="56" font-weight="700" fill="#ffffff">Gestão Pública</text>
-  <text x="60" y="300" font-family="Inter, sans-serif" font-size="22" font-weight="500" fill="#ffffff" fill-opacity="0.85">Servidores, salários, contratos</text>
-  <text x="60" y="410" font-family="Inter, sans-serif" font-size="12" font-weight="500" fill="#ffffff" fill-opacity="0.6" letter-spacing="2">PLACEHOLDER, IMAGEM EM PRODUÇÃO</text>
+  <circle cx="700" cy="80" r="160" fill="#ffffff" fill-opacity="0.06"/>
+  <circle cx="100" cy="380" r="120" fill="#ffffff" fill-opacity="0.04"/>
+  <rect x="56" y="160" width="36" height="4" rx="2" fill="#ffffff" fill-opacity="0.8"/>
+  <text x="56" y="235" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="48" font-weight="800" fill="#ffffff" letter-spacing="-0.5">Gestão Pública</text>
+  <text x="56" y="280" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="400" fill="#ffffff" fill-opacity="0.9">Servidores, salários, contratos e licitações</text>
+  <text x="56" y="395" font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" fill="#ffffff" fill-opacity="0.65" letter-spacing="2">PORTAL DA TRANSPARÊNCIA DO MARANHÃO</text>
 </svg>
